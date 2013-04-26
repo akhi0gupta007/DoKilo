@@ -1,0 +1,20 @@
+<div id="buddies">
+<div class="title">
+
+ <p><strong>Select Here</strong></p>
+
+ <p><g:link controller="product" action="another" params="[page=0]"> Product</g:link></p>
+   <p><g:link controller="templates" action="site">Site Design</g:link></p>
+    <p><g:link controller="sales" action="index">Sales</g:link></p>
+  <p><g:link controller="blog" action="index">Marketing</g:link></p>
+
+ 
+  <p><g:link controller="shipping" action="home">Logistics</g:link></p>
+
+  
+
+<!--
+<img src="${resource(dir: 'images', file: 'cblogo.png')}" alt="Grails"/>
+-->
+</div>
+</div>

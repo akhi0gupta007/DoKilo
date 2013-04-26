@@ -1,0 +1,379 @@
+var userid,token,name;
+var counter1=0,counter=0,counter3=0; 
+function check(){
+	$('#add').hide();	
+	
+$.getJSON('/codebee/persistence/index', function(data) {
+	  var items = [];
+	
+	  $.each(data, function(key, val) {
+		console.log(val);
+		if(key==="userid")
+			userid=val
+		if(key==="token")	
+			token=val
+		if(key=="login")
+		 name = val
+	  
+	 	  	});
+	})
+	.error(function() { alert("error"); })
+	.complete(function() { checkCookie(); });
+	
+
+}
+
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+  {
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+function setCookie(c_name,value,exdays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+}
+
+function checkCookie()
+{
+	hello(userid); // makes the product table
+	makeCollectionTable(userid); //make collection table
+	$('#details').hide();
+	$("#sub_category").append('<option value=0>Create New Catogory Instead</option>');
+	$("#sub_category").append('<option value=0>--------</option>');
+	
+	makeComboBox(userid,"customCollection","sub_category");
+	makeTypeBox(userid,"protype");
+	
+	$("#protype").append('<option value=0>Create New Type Instead</option>');
+	$("#protype").append('<option value=0>--------</option>');
+	
+	makeVendorBox(userid,"sub_ven");
+	
+	$("#sub_ven").append('<option value=0>Create New Vendor Instead</option>');
+	$("#sub_ven").append('<option value=0>--------</option>');
+	
+	console.log("Userid .."+userid+"Token.."+token);
+	setCookie("userid",userid,365);
+	setCookie("token",token,365);
+	
+	$("#wel").html("Welcome <em>"+name+" </em>thanks for login, <a href='/codebee/persistence/logout'>Logout</a>");
+
+}
+
+function makeVendorBox(id,attr){
+	
+	var uri = '/codebee/api/user/'+id
+  $.getJSON(uri, function(data) {
+	var items = [];
+	var junk = 'select#'+attr;
+	//$(junk+'  option').remove(); 
+	//console.log(data.data.proType[0]);
+	for(var i=0 ; i < data.data.vendor.length; i++){
+		var go = '/codebee/api/'+'vendor'+'/'+data.data.vendor[i];
+		
+				$.getJSON(go,function(hello){
+				//	console.log(hello.data.id+hello.data.type);
+					var row = "<option value=\"" + hello.data.id + "\">" + hello.data.ven_name+ "</option>"; 
+                    $(row).appendTo(junk); 	
+							});
+						
+		}	
+	})
+	.error(function() { alert("error,login please"); })
+	.complete(function() { });
+	
+}
+function makeComboBox(id,what,attr)
+
+{
+	
+  var uri = '/codebee/api/user/'+id
+  $.getJSON(uri, function(data) {
+	var items = [];
+	var junk = 'select#'+attr;
+	//$(junk+'  option').remove(); 
+	console.log(data.data.collection[1]);
+	for(var i=0 ; i < data.data.collection.length; i++){
+		var go = '/codebee/api/'+what+'/'+data.data.collection[i];
+		
+				$.getJSON(go,function(hello){
+					console.log(hello.data.id+hello.data.name);
+					var row = "<option value=\"" + hello.data.id + "\">" + hello.data.name+ "</option>"; 
+                    $(row).appendTo(junk); 	
+							});
+						
+		}	
+	})
+	.error(function() { alert("error,login please"); })
+	.complete(function() { });
+	
+	
+}
+
+function makeTypeBox(id,attr)
+
+{
+	
+  var uri = '/codebee/api/user/'+id
+  $.getJSON(uri, function(data) {
+	var items = [];
+	var junk = 'select#'+attr;
+	//$(junk+'  option').remove(); 
+	console.log(data.data.proType[0]);
+	for(var i=0 ; i < data.data.proType.length; i++){
+		var go = '/codebee/api/'+'proType'+'/'+data.data.proType[i];
+		
+				$.getJSON(go,function(hello){
+					console.log(hello.data.id+hello.data.type);
+					var row = "<option value=\"" + hello.data.id + "\">" + hello.data.type+ "</option>"; 
+                    $(row).appendTo(junk); 	
+							});
+						
+		}	
+	})
+	.error(function() { alert("error,login please"); })
+	.complete(function() { });
+	
+	
+}
+
+
+	  function function1(colors) {
+		 
+       var col = (colors.options[colors.selectedIndex].value);
+              if (col == 0 && counter < 1) { 
+		
+			 var element = document.createElement("input");
+			 element.setAttribute("type","text");
+			 element.setAttribute("id","ptype");
+			 var foo = document.getElementById("fooBar");
+			 foo.appendChild(element);
+			  ++counter;
+        }else{
+			$('#ptype').remove();
+			counter = 0;
+			}
+		
+     
+    } 
+
+  function function2(colors) {
+		
+       var col = (colors.options[colors.selectedIndex].value);
+        if (col == 0 && counter1 < 1) { 
+		
+			 var element = document.createElement("input");
+			 element.setAttribute("type","text");
+			 element.setAttribute("id","ctype");
+			 var foo = document.getElementById("fooBar1");
+			 foo.appendChild(element);
+			 ++counter1;
+        }else{
+			$('#ctype').remove();
+			counter1 = 0;
+			}
+	
+    } 
+  
+  function quantity(arg){
+	    console.log("arrived here ");
+
+        var check = $('#qu').is(":checked");
+        if(check){
+
+            $('#qq').show()
+            var element = document.createElement("input");
+            element.setAttribute("type","text");
+
+            element.setAttribute("id","ran");
+            element.setAttribute("size","3")
+            var foo = document.getElementById("qq");
+            foo.appendChild(element);
+
+        }else{
+            console.log("wrong");
+            $('#ran').remove()
+            $('#qq').hide()
+
+        }
+
+	  }  
+    
+  function function3(colors) {
+		
+       var col = (colors.options[colors.selectedIndex].value);
+        if (col == 0 && counter3 < 1) { 
+		
+			 var element = document.createElement("input");
+			 element.setAttribute("type","text");
+			 element.setAttribute("id","vtype");
+			 var foo = document.getElementById("fooBar12");
+			 foo.appendChild(element);
+			 ++counter3;
+        }else{
+			$('#vtype').remove();
+			counter3 = 0;
+			}
+	
+    } 
+     
+      
+      $("#z").click(function(event) {
+	  console.log("enter form");
+	
+	  $('#add').hide(); 
+	  $('#show').show(); 
+		
+	 
+		var cat = '0';
+		if($('#sub_category').val()=='0'){
+			if($('#ctype').val()!= '' && $('#ctype').val()!=null)
+				cat = $('#ctype').val()
+				}else{
+			cat = $('#sub_category').val()
+		  // console.log("something"+$('#sub_category').val());
+		}
+		
+		var type = '0';
+		if($('#protype').val()=='0'){
+			if($('#ptype').val()!= '' && $('#ptype').val()!=null)
+				type = $('#ptype').val()
+				}else{
+			type = $('#protype').val()
+		   console.log("something"+$('#protype').val());
+		}
+		
+		var tv = '0';
+		if($('#sub_ven').val()=='0'){
+			if($('#vtype').val()!= '' && $('#vtype').val()!=null)
+				tv = $('#vtype').val()
+				}else{
+			tv = $('#sub_ven').val()
+		   console.log("something"+$('#sub_ven').val());
+		}
+
+      var no = $('#ran').val()
+	  var t = $('#tax').is(":checked");
+	  var s =  $('#ship').is(":checked");
+	  $('#xyz').attr('value',"timepass");
+	  $('#collc').attr('value',cat);
+	  $('#ptc').attr('value',type);
+	  $('#venc').attr('value',tv);
+	  $('#tc').attr('value',t);
+	  $('#sc').attr('value',s);
+      $('#un').attr('value',no);
+      console.log(no) ;
+
+	  $('#proform').submit();
+	  
+	  
+   // $("#proform")
+    /*
+	  
+	  $.post("/codebee/product/added", { sel_price:$("#sp").val(),
+	  title:$("#proname").val(),
+	  pro_id:$("#proid").val(),
+	  description: $("#description").val(),
+	  coll:cat,weight:$("#wt").val(),ptype:type,
+	  tax:t,ship_addr:s,vendors:tv},"json");
+		
+	//window.location.reload();
+	 */
+  });
+    
+    
+ function hello(id){
+	var uri = '/codebee/api/user/'+id
+	$.getJSON(uri, function(data) {
+	var items = [];
+	var junk = 'table#protype1';
+	//$(junk+'  option').remove(); 
+	//console.log(data.data.proType[0]);
+	for(var i=0 ; i < data.data.product.length; i++){
+		var go = '/codebee/api/'+'product'+'/'+data.data.product[i];
+		
+				$.getJSON(go,function(hello){
+						
+						var gov = "/codebee/api/vendor/"+hello.data.vendor;
+							$.getJSON(gov,function(ven_data){
+					
+						var row ="<tr><td><input type='checkbox' value='"+hello.data.id+"'/></td>"+
+							"<td>"+hello.data.pro_id+ "</td><td>"+hello.data.title+"</td>"+
+							"<td>"+hello.data.sel_price+"</td><td>"+hello.data.description+"</td>"+
+							"<td>"+ven_data.data.ven_name+"</td></tr>";
+						 $(row).appendTo(junk); 
+					
+						 });
+				                  	
+							});
+						
+		}	
+	})
+	.error(function() { alert("error,login please"); })
+	.complete(function() { }); 
+		
+	 
+	 }    
+    
+    
+    function makeCollectionTable(id){
+		
+	var uri = '/codebee/api/user/'+id;
+	
+	$.getJSON(uri, function(data) {
+	var items = [];
+	var junk = 'table#showc';
+	
+	for(var i=0 ; i < data.data.collection.length; i++){
+		var go = '/codebee/api/'+'customCollection'+'/'+data.data.collection[i];
+		
+				$.getJSON(go,function(hello){
+				//	console.log(hello.data.name+hello.data.description);
+						
+			var row = 
+				"<td><em><a href='' onClick='linkAction("+hello.data.id+"); return false'>"+hello.data.name+ "</a></em></td>";
+			 $(row).appendTo(junk); 
+			 
+			});
+	
+			}   	
+							})
+	.error(function() { alert("error,login please"); })
+	.complete(function() { }); 	
+		
+		
+		}
+
+function linkAction(id){
+
+
+	$('#showcol').hide();
+	$('#details').show();
+	var uri = "collect.html?id=2";
+	
+	console.log(uri);
+	$("#details").load(uri);
+	
+	
+	
+	return false;
+	}		
+
+
+ $("#yahoo").click(function(event) {
+	console.log("great");
+	alert('hi guys');
+      });

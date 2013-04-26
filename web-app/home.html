@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+<meta charset="UTF-8">
+<title>Welcome</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>$(document).ready(function() {
+  $('#log').hide();
+});</script>
+</head>
+<body>
+<b><center>Welcome to Codebee Shopify Portal</center></b>
+<p align="right"><input type="button" id="login" value="Login,i have Account"/></p>
+<div id="reg" align="left">
+<p><b>Register here to continue</b></p>
+<form action="" method="post" id="register">
+<p>Choose your Id : <input type="text" id="userId"/>
+Choose your Password: <input type="password" id="password"/>
+Email : <input type="text" id="emailId"/></p>
+<p align="center"><input type="submit" value="Create"/></p>
+</form>
+</div>
+
+<div id="log">
+
+<form action="/codebee/auth/authUser" method="post">
+<p>User id :<input type="text" name="userid"/></p>
+<p>Password:<input type="password" name="password"/></p>
+<p><input type="submit" value="login"/></p>
+</form>
+
+</div>
+<script>
+
+$("#register").submit(function(event) {
+		
+		var user =	$("#userId").val();
+		var password = $("#password").val();
+		var email = $("#emailId").val(); 
+		var url = "http://localhost:8080/codebee/user/addUser?u="+user+"&p="+password+"&em="+email;
+		$("#register").attr("action",url);				
+		$("#register").submit();	 
+		event.preventDefault();
+     
+});
+
+$('#login').click(function() {
+  $('#reg').hide('slow', function() {
+     });
+  $('#log').show();	   
+});
+</script>
+
+
+</body>
+</html>

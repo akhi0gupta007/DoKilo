@@ -1,0 +1,54 @@
+<div id="buddies">
+<div class="title">
+ 
+<p><strong>PRODUCT CATOGORIES</strong></p>
+
+<ul>
+     <g:each var="next" in="${session.types}">
+ <li><h3><g:link action="showTypes" id="${next.id}">${next.type}</g:link></h3> </li>
+ 
+ </g:each>
+     </ul>
+ <p><strong>LATEST TWEETS</strong></p>
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 30000,
+  width: 250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#333333',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: 'white',
+      color: 'grey',
+      links: 'black'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: false,
+    live: false,
+    behavior: 'all'
+  }
+}).render().setUser('gupta007').start();
+
+</script>
+
+<p>Facebook</p>
+
+   
+       <iframe src="http://www.facebook.com/plugins/like.php?href=hhttp://localhost:8080/codebee/"
+        scrolling="no" frameborder="0"
+        style="border:none; width:450px; height:80px"></iframe>
+  
+
+
+
+</div>
+</div>

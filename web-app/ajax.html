@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <form action="#" id="searchForm">
+   <input type="text" id="name1" />
+   <input type="submit" value="Search" />
+  </form>
+  
+  <script>
+  /* attach a submit handler to the form */
+  $("#searchForm").submit(function(event) {
+	  event.preventDefault();
+	  	var name=$("#name1").val();
+		var user="htrtr";
+		var pass="sjdjdi";
+		var em="shit@shit.com";
+		$.post("http://localhost:8080/codebee/user/jsonEx", { userId: name, password: pass,emailId:em },"json");
+		
+		/*		
+		
+		$.ajaxSetup({
+			  contentType: "application/json; charset=utf-8"
+			});
+		*/
+		/*var json = {
+				userId: "qwert2099",
+				password: "spiders",
+				emailId: "qwert2099@gmail.com"};
+			    $.post('http://localhost:8080/codebee/user/jsonEx', json,
+		            function(data){
+		                console.log(data);
+		            }, 'json');
+		$.ajax({
+			  url: "http://localhost:8080/codebee/user/jsonEx",
+			  data: JSON.stringify(json),
+			  processData: false,
+			  dataType: "json",
+			  contentType: "application/json; charset=utf-8",
+			  success:function(a) { console.log("Success");},
+			  error:function(a,b,c) {console.log("Error "+b+"  "+c);}
+			});*/
+	  
+  });
+</script>
+</body>
+</html>

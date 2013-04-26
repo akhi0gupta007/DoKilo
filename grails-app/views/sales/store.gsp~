@@ -1,0 +1,102 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="layout" content="site"/>
+<title>${session.user.userId} Store</title>
+<style type="text/css">
+A:link {text-decoration: none;color:#736F6E;}
+A:visited {text-decoration: none;color:#736F6E;}
+A:active {text-decoration: none;color:#736F6E;}
+A:hover {text-decoration: underline; color: #736F6E;}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	var myTable = '' ;
+	myTable += '<table id="myTable" cellspacing=0 cellpadding=2 border=1>' ;
+
+	myTable +=  "<tbody>" ;
+
+	for (var i = 0; i < ${prolist.size()}; i++) {
+	   
+	    		if(i == 0){
+	    			 myTable +=    '<tr><td>';
+	    		}
+	    		else{	 
+		        	myTable += '<td>';
+		        	
+		        	if((i%3)==0){
+		        		myTable +=    '<tr><td>';		
+			        	}
+	    		}
+	    		//var str = "${"+ i + "}";
+	    		console.log(str)
+	    		<g:set var="total" value="${i}" />
+	    	
+	    		
+	
+				
+				myTable+= 	${total}
+	      	   //myTable += "</td>";
+
+				if(i == 0){
+	    			 myTable +=    '</td>';
+	    		}
+	    		else{	 
+		        	myTable += '</td></td>';
+		        	
+		        	if((i%3)==0){
+		        		myTable +=    '</tr></td>';		
+			        	}
+	    		}
+	    
+	    
+	}
+	myTable +=  "</tbody>" ;
+	myTable += "</table>" ;
+
+	//$("#result").append(myTable) ;
+*/
+	
+});
+
+</script>
+</head>
+<body>
+  <div class="body">
+	<g:set var="counter" value="${0}" />	
+<table id="my" cellspacing=0 cellpadding=2 border=1>
+	<g:each var="next" in="${prolist}">
+		<g:if test="${counter == 0}">
+	     	<tr><td>
+		</g:if>
+		<g:else>
+			<g:if test="${counter % 3 == 0}">
+			<tr><td>
+			</g:if>
+			<g:else>
+			<td>
+			</g:else>	
+		</g:else>
+		${next}
+	
+		<g:if test="${counter == 0}">
+	     		</td>
+		</g:if>
+		<g:else>
+			<g:if test="${counter % 3 == 0}">
+			</td></tr>
+			</g:if>
+			<g:else>
+			</td>
+			</g:else>	
+		</g:else>
+	
+	</g:each>
+</table>
+
+
+  </div>
+</body>
+</html>

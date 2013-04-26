@@ -1,0 +1,107 @@
+<html>
+	<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	 <script type="text/javascript" src="js/script.js"></script>
+	 <script>
+	var ven ;	 
+	$(document).ready(function() {
+		var arr = [1,2]
+		for (var i = 0; i < arr.length; i++){ 
+				hello(arr[i]);
+				//space += array[i] + " "; 
+			} 
+		//hello(2);
+		 var items = []
+	/*	
+   items.push('<tr><th>Select</th><th>Product ID </th>'+
+             '<th>Product Title </th><th>Sell Price</th><th>Description</th>'+
+             '<th>Vendor</th><th>Collection</th></tr>');
+             
+             
+	$.getJSON("http://localhost:8080/codebee/api/product/1",function(data){
+					console.log(data.data.title);
+					
+	var gov = "http://localhost:8080/codebee/api/vendor/"+data.data.vendor;
+	
+	
+	$.getJSON(gov,function(ven_data){ 
+		//console.log(ven_data.data.ven_name);
+		ven = ven_data.data.ven_name;
+		console.log(ven);
+		     
+	})
+	.complete(function() {  });   
+	
+	   items.push("<tr><td><input type='checkbox' value='"+data.data.id+"'/></td>"+
+				"<td>"+data.data.id+ "</td><td>"+data.data.title+"</td>"+
+				"<td>"+data.data.sel_price+"</td><td>"+data.data.description+"</td>"+
+				"<td>"+ven+ "</td><td>"+data.data.title+"</td>"+"</tr>");
+				
+				
+	   $('<table/>', {
+	    'id': 'protable',
+		align:'center',
+	    html: items.join('')
+	  }).appendTo('body');*/
+						
+					});
+
+	
+ function hello(id){
+	var uri = 'http://localhost:8080/codebee/api/user/'+id
+	$.getJSON(uri, function(data) {
+	var items = [];
+	var junk = 'table#protype';
+	//$(junk+'  option').remove(); 
+	console.log(data.data.proType[0]);
+	for(var i=0 ; i < data.data.product.length; i++){
+		var go = 'http://localhost:8080/codebee/api/'+'product'+'/'+data.data.product[i];
+		
+				$.getJSON(go,function(hello){
+					console.log(hello.data.id+hello.data.title);
+					
+			var gov = "http://localhost:8080/codebee/api/vendor/"+hello.data.vendor;
+			var colc = "http://localhost:8080/codebee/api/customCollection/"+hello.data.vendor;
+	
+		$.getJSON(gov,function(ven_data){
+		
+		$.getJSON(colc,function(col_data){
+			
+			var row ="<tr><td><input type='checkbox' value='"+hello.data.id+"'/></td>"+
+				"<td>"+hello.data.id+ "</td><td>"+hello.data.title+"</td>"+
+				"<td>"+hello.data.sel_price+"</td><td>"+hello.data.description+"</td>"+
+				"<td>"+ven_data.data.ven_name+ "</td><td>"+col_data.data.name+"</td>"+"</tr>";
+			 $(row).appendTo(junk); 
+			});
+		
+		
+		
+		 });
+		
+					//var row = "<option value=\"" + hello.data.id + "\">" + hello.data.type+ "</option>"; 
+                   	
+							});
+						
+		}	
+	})
+	.error(function() { alert("error,login please"); })
+	.complete(function() { }); 
+	 
+	//var row = "<tr><td><input type='checkbox' value=''/></td></tr>"; 
+    //$(row).appendTo('table#protype'); 	
+	 
+	 } 
+	 </script>
+	
+	</head>
+<body>
+	
+ <table id="protype" name="protype">
+ <tr><th>Select</th><th>Product ID </th>
+     <th>Product Title </th><th>Sell Price</th><th>Description</th>
+             <th>Vendor</th><th>Collection</th></tr>
+ 
+ </table>
+
+      </body>
+</html>

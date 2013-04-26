@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<title>Cookie Demo</title>
+
+</head>
+<body>
+
+
+
+<a href="/codebee/persistence/protectedDemo/">Protected Stuff</a>
+<script language="javascript" type="text/javascript">
+ 
+var scrt_var =getCookie("userid");
+var token = getCookie("token");
+</script>
+
+
+<a href="/codebee/persistence/protectedDemo/" onclick="location.href=this.href+'?id='+scrt_var+'&token='+token;return false;">Link</a>
+<a href="/codebee/persistence/logout">Logout</a>
+</body>
+</html>

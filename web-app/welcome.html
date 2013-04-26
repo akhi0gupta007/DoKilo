@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Secure Page</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<head>
+<script type="text/javascript" src="js/addclasskillclass.js"></script>
+<script type="text/javascript" src="js/attachevent.js"></script>
+<script type="text/javascript" src="js/AddCSS.js"></script>
+<script type="text/javascript" src="js/tabtastic.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tabtastic.css" />
+
+</head>
+
+</head>
+<body onload="check()"> <!-- Sets the persistant cookie,don't call anywhere else -->
+<script type="text/javascript" src="js/script.js"></script>
+<p id="wel" align="right"></p>
+<br>
+
+<ul class="tabset_tabs">
+<li><a href="#tabid1" class="active">Products and Inventory</a></li>
+<li><a href="#tabid2">Collections</a></li>
+</ul>
+
+
+<div id="tabid1" class="tabset_content">
+   <h2 class="tabset_label">Tab Title</h2>
+   <br>
+   <h3 align="center">Products</h3>
+   <hr>
+   <p><a href="" id="hi">Add New Product</a> | Export New Product | Import New Product</p>
+   </br>
+   <script>
+   $('#hi').click(function (event) { 
+	$('#add').show(); 
+	$('#show').hide();     
+	event.preventDefault(); 
+});
+   </script>
+   <div id="show">
+   Showing Your Products
+   <table id="protype1" name="protype1" cellpadding="5" cellspacing="4">
+ <tr><th>Select</th><th>Product ID </th>
+     <th>Product Title </th><th>Sell Price</th><th>Description</th>
+             <th>Vendor</th><th>Collection</th></tr>
+ 
+ </table>
+   </div>
+   <div id="add">
+  <h3>Adding Products</h3>
+   <table>
+   <form action="#" id="proform">
+   <tr><td><label for="product">
+Product Title
+<span class="required-indicator">*</span>
+</label></td></tr>
+   <tr><td><input type="text" id="proname"/></td></tr>
+   
+    <tr><td><label for="product">
+Product ID
+<span class="required-indicator">*</span>
+</label></td></tr>
+   <tr><td><input type="text" id="proid"/></td></tr>
+   
+   <tr>
+	   <td>
+   <label>
+Description
+
+</label></tr>
+<tr><td><textarea id="description"  rows="5" cols="100" name="description"></textarea>
+   </td>
+   </tr>
+   <tr>
+   <td>Product Properties		</td>
+   </tr>
+   <tr>
+   <td>
+   Select Product Vendor:
+   </td>
+   </tr>
+   <tr>
+   <td>
+   <select name="sub_ven" id="sub_ven" onChange="function3(this)"> 
+    <option value="0">-- Select Your Vendor --</option> 
+</select>
+<span id="fooBar12">&nbsp;</span>
+   </td>
+   </tr>
+   <tr>
+   <td>
+   Select Product Catogory:
+   </td>
+   </tr>
+   <tr>
+   <td>
+   <select name="sub_category" id="sub_category" onChange="function2(this)"> 
+    <option value="0">-- Select Your Catogory --</option> 
+</select>
+<span id="fooBar1">&nbsp;</span>
+   </td>
+   </tr>
+   <tr>
+   <td>
+   Select Product Type :
+   </td>
+   </tr>
+      <tr>
+   <td>
+   <select name="protype" id="protype" onChange="function1(this)"> 
+    <option value="0">-- Select Your Type --</option> 
+</select>   
+<span id="fooBar">&nbsp;</span></td>
+   </tr>
+   <tr>
+   <td>
+   <label>
+   Selling Price
+   </label>
+     
+   <input type="text" id="sp" value="0.0" size="5"/>INR
+   </td>
+   <tr>
+	   <td>
+	   <label>
+   Weight
+   </label>
+   <input type="text" id="wt" value="0.0" size="5"/>Kg
+   </td>
+   </tr>
+   <tr>
+   <td>
+	   <INPUT TYPE="checkbox" id="tax" value="payTax">
+		Charge Tax
+   </td>
+   <td>
+	   <INPUT TYPE="checkbox" id="ship">
+		Require a Shipping Address
+   </td>
+   
+   </tr>
+   <tr>
+   <td>
+   <input type="submit" value="Create"/>
+   </td>
+   </tr>
+   </form>
+  <script type="text/javascript" src="js/script.js"></script>   
+   </table>
+   </div>
+   
+</div>
+
+<div id="tabid2" class="tabset_content">
+   <h2 class="tabset_label">Tab Title</h2>
+    <br>
+   <h3 align="center">Collections</h3>
+   <hr>
+   <p><a href="" id="newc">Add New Collection</a> | Add Smart Collection</p>
+   
+   <div id="showcol">
+	    <br>
+   Showing Your Collection
+   <table id="showc" name="showc" cellpadding="5" cellspacing="4">
+
+ </table>
+</div>
+<div id="details">
+Showing Details:
+
+</div>
+</body>
+</html>

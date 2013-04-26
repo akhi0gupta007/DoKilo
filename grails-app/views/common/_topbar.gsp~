@@ -1,0 +1,12 @@
+<div id="menu">
+<nobr>
+<g:if test="${session.user}">
+<b>|<g:link action="create" controller="profile">Account Settings</g:link>${session.user?.userId}&nbsp;|${session.user?.emailId}</b> |
+<g:link controller="persistence" action="logout">Logout</g:link>
+
+</g:if>
+<g:else>
+<a href = "/codebee">Login</a>
+</g:else>
+</nobr>
+</div>

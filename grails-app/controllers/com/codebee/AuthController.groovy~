@@ -1,0 +1,39 @@
+package com.codebee
+import grails.converters.JSON
+class AuthController {
+	def TokenGeneratorService
+    def index() {
+		render "<H2>Unauthorised</h2>"
+		 }
+	
+	def authUser() {
+		
+		def result = []
+		Object key
+		boolean status = false
+		def token = User.findByUserId(params.userid);
+			if(token){
+					if(token.password.equals(params.password))
+						status = true
+					else
+						status = false
+			}
+		long val
+			if(status){
+				key=TokenGeneratorService.getToken()
+				val=token.id
+			}
+			else{
+				val=0
+				key="N/A"
+			}
+		session["user"] = token
+	
+		if(status)
+		redirect(url: "/user/home")
+		//result=[loggedin:status,token:key,userid:val]
+		//render result as JSON
+		}
+	
+	
+}

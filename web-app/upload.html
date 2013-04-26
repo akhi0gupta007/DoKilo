@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Secure Page</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+</head>
+<body onload="check()">
+
+<script type="text/javascript" src="script.js"></script>
+
+File Upload Service Call :
+
+<form action="/codebee/file/upload" enctype="multipart/form-data" method="post">
+<p>File:<input type="file" name="photo"/></p>
+<p><input type="submit" value="Upload"/></p>
+</form>
+<br/>
+
+Product xls file Upload:
+<form action="/codebee/file/upload" enctype="multipart/form-data" method="post" id="xlsf">
+<p>File:<input type="file" name="xls"/></p>
+<p><input type="submit" value="Upload"/></p>
+</form>
+
+<script>
+
+$("#xlsf").submit(function(event) {
+	
+		var scrt_var =getCookie("userid");
+		var token = getCookie("token"); 
+		var url = "http://localhost:8080/codebee/xlsUploader/handle?id="+scrt_var+"&token="+token+"";
+		$("#xlsf").attr("action",url);				
+		$("#xlsf").submit();	 
+		event.preventDefault();
+     
+});
+</script>
+
+</body>
+</html>
+<a href="/codebee/persistence/logout">Logout</a>
+</body>
+</html>

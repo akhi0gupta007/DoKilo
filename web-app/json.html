@@ -1,0 +1,39 @@
+<html>
+  <head>
+   
+    <title>Google Books Embedded Viewer API Example</title>
+    <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+</script>
+ 
+      <script>
+
+$(document).ready(function(){
+	
+var url = "https://www.googleapis.com/plus/v1/people/108189587050871927619?key=AIzaSyAyp-hdesLZngsjPJNvpae5S6imxxvitXg";	
+$.getJSON(url, function(data) {
+	  var items = [];
+	
+	 $.each(data, function(key, val) {
+    items.push('<li id="' + key + '">' + val + '</li>');
+  });
+	  $('<ul/>', {
+    'class': 'my-new-list',
+    html: items.join('')
+  }).appendTo('body');
+  
+	})
+	.error(function() { alert("error"); })
+	.complete(function() {  });
+	
+  
+});
+
+</script> 
+  </head>
+  <body>
+ 
+  
+   
+  </body>
+</html>

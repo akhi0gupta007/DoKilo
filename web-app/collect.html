@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Collection Details</title>
+</head>
+
+<body>
+	<script>
+	//window.location.reload();
+	$.urlParam = function(name){
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+}
+	$.urlParam('id'); 
+	console.log("the id recieved"+$.urlParam('id'));
+	</script>
+The id recieved is 
+<input type="text" id="xyz"/>
+</body>
+</html>

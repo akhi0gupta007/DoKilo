@@ -1,0 +1,28 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="layout" content="main"/>
+<title>Insert title here</title>
+</head>
+<body>
+  <div class="body">
+  
+  <form method=post action=https://api-3t.sandbox.paypal.com/nvp> 
+	 <input type="hidden" name="USER" value="akhi%5F1332239329%5Fbiz%5Fapi1.gmail.com"> 
+	 <input type="hidden" name="PWD" value="1332239355"> 
+	 <input type="hidden" name="SIGNATURE" value="ACUe%2DE7Hjxmeel8FjYAtjnx%2DyjHAALWDEL2V%2D8FbwXb3zxY2tl%2E2Pd0K"> 
+	 <input type="hidden" name="VERSION" value="60.0"> 
+	 <input type="hidden" name="PAYMENTREQUEST_0_PAYMENTACTION"
+	 value="Sale"> 
+	 <input name="PAYMENTREQUEST_0_AMT" value="19.95"> 
+	 <input type="hidden" name="RETURNURL"
+	 value="http://localhost:8080/codebee/user/tryjs"> 
+	 <input type="hidden" name="CANCELURL" 
+	 value="http://localhost:8080/codebee/user/tryjs"> 
+	 <input type=submit name="METHOD" value="SetExpressCheckout"> 
+ </form> 
+ 
+  </div>
+</body>
+</html>
